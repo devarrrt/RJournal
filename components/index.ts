@@ -1,3 +1,6 @@
 export { default as Header } from './Header/Header'
 export { default as Post } from './Post/Post'
 export { default as LeftMenu } from './LeftMenu/LeftMenu'
+export { default as MainLayout } from './MainLayout/MainLayout'
+export { default as SideComments } from './SideComments/SideComments'
+export { default as CommentItem } from './SideComments/CommentItem'
