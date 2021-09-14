@@ -9,7 +9,6 @@ import {
 } from '@material-ui/icons';
 import { Button, IconButton, Paper } from '@material-ui/core';
 import Link from 'next/link';
-import Image from 'next/image';
 
 import styles from './Header.module.scss';
 
@@ -62,8 +61,12 @@ const Header: React.FC<IHeader> = () => {
 
         {/* login */}
         <div className={styles.loginButton}>
-          <UserIcon />
-          Войти
+          <Link href="/profile/1">
+            <a className="d-flex align-center">
+              <UserIcon />
+              Войти
+            </a>
+          </Link>
         </div>
       </div>
     </Paper>

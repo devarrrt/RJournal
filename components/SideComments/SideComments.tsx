@@ -1,21 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import clsx from 'clsx'
 import ArrowRightIcon from "@material-ui/icons/NavigateNextOutlined";
 
-import styles from './SideComments.module.scss'
 import CommentItem from './CommentItem';
+import styles from './SideComments.module.scss'
 
 interface ISideComments {
 
 }
 
 const SideComments: React.FC<ISideComments> = () => {
+    const [visible, setvisible] = useState(true)
+
+    const toggleVisible = () => setvisible(!visible)
+
     return (
-        <div className={clsx(styles.root)}>
-            <h3>
+        <div className={clsx(styles.root, !visible && styles.rotated)}>
+            <h3 onClick={toggleVisible}>
                 Комментарии <ArrowRightIcon />
             </h3>
-        <CommentItem/>
+            {visible && (
+                <>
+                    <CommentItem />
+                    <CommentItem />
+                </>
+
+            )}
+
         </div>
     )
 }
