@@ -4,7 +4,7 @@ import { MainLayout, Post } from '../components';
 
 const Home: NextPage = () => {
   return (
-   <MainLayout>
+   <MainLayout hideComments>
      <Post/>
       <Post />
       <Post />
