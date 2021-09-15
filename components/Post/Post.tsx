@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image';
 
 import styles from './Post.module.scss'
+import PostActions from './PostActions';
 
 interface IPost { }
 
@@ -28,6 +29,7 @@ const Post: React.FC<IPost> = () => {
                 height={500}
                 width={600}
             />
+            <PostActions/>
         </Paper>
     )
 }
