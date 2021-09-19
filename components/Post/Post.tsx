@@ -10,9 +10,10 @@ interface IPost { }
 
 const Post: React.FC<IPost> = () => {
     return (
-        <Paper elevation={0} className="p-20" classes={{ root: styles.paper }}>
+        <Paper elevation={0} className="p-20" 
+        classes={{ root: styles.paper }}>
             <Typography variant="h5" className={styles.title}>
-                <Link href="#">
+                <Link href="/news/slag">
                     <a>
                         Кот прилёг отдохнуть в английском парке миниатюр — и стал героем шуток и фотожаб о
                         «гигантском пушистом захватчике»
