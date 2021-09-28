@@ -1,24 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Divider, Paper, Tab, Tabs, Typography } from '@material-ui/core'
-import { SignalCellularNull } from '@material-ui/icons'
-import { Comment } from '..'
+import { AddCommentForm, Comment } from '..'
+import data from '../../data'
 
-interface IPostComments { }
+const PostComments: React.FC = () => {
+    const [activeTab, setActiveTab] = useState(0)
+    const comments = data.comments[activeTab === 0 ? "popular" : "new"]
 
-const PostComments = () => {
+    const changeTab = ( e: any, newValue: any ) => {
+        setActiveTab(newValue)
+    }
+
     return (
-        <Paper elevation={0} className="mt-40 p-30">   {/*оболочка для комментариев */}
+        <Paper elevation={0} className="mt-40 p-30">
             <div className="container">
                 <Typography variant="h6" className="mb-20">
                     42 комментария
                 </Typography>
-                <Tabs className="mt-20" value={null} indicatorColor="primary" textColor="primary">
+                <Tabs onChange={changeTab} className="mt-20" value={activeTab} indicatorColor="primary" textColor="primary">
                     <Tab label="Популярные" />
                     <Tab label="По порядку" />
                 </Tabs>
                 <Divider />
-                <Comment /> {/* комментарий отдельного юзера*/}
-                <Comment />
+                <AddCommentForm />
+                <div className="mb-20" />
+                {comments.map(item => (
+                    <Comment key={item.id} {...item} />
+                ))}
             </div>
         </Paper>
     )
