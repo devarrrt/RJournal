@@ -4,10 +4,9 @@ import ArrowRightIcon from "@material-ui/icons/NavigateNextOutlined";
 
 import CommentItem from './CommentItem';
 import styles from './SideComments.module.scss'
+import data from '../../data'
 
-interface ISideComments {
-
-}
+interface ISideComments { }
 
 const SideComments: React.FC<ISideComments> = () => {
     const [visible, setvisible] = useState(true)
@@ -20,13 +19,10 @@ const SideComments: React.FC<ISideComments> = () => {
                 Комментарии <ArrowRightIcon />
             </h3>
             {visible && (
-                <>
-                    <CommentItem />
-                    <CommentItem />
-                </>
-
+                data.comments.popular.map((obj) => (
+                    <CommentItem key={obj.id} {...obj} />
+                ))
             )}
-
         </div>
     )
 }
