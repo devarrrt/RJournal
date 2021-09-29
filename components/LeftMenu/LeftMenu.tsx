@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import { Button } from '@material-ui/core';
 import {
@@ -21,6 +22,8 @@ const menu = [
 
 
 const LeftMenu: React.FC<ILeftMenu> = () => {
+    const router = useRouter()
+
     return (
         <div className={styles.menu}>
             <ul>
@@ -28,7 +31,7 @@ const LeftMenu: React.FC<ILeftMenu> = () => {
                     <li key={obj.path}>
                         <Link href={obj.path}>
                             <a>
-                                <Button>
+                                <Button variant={router.asPath === obj.path ? 'contained' : ''}>
                                     {obj.icon}
                                     {obj.text}
                                 </Button>
