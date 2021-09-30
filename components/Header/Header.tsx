@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SearchOutlined as SearchIcon,
   SmsOutlined as MessageIcon,
@@ -11,19 +11,22 @@ import { Button, IconButton, Paper } from '@material-ui/core';
 import Link from 'next/link';
 
 import styles from './Header.module.scss';
+import { AuthDialog } from '..';
 
 interface IHeader { }
 
 const Header: React.FC<IHeader> = () => {
+  const [visibleAuth, setVisibleAuth] = useState(false)
+
+  const openAuthDialog = () => setVisibleAuth(true)
+  const closeAuthDialog = () => setVisibleAuth(false)
+
   return (
     <Paper classes={{ root: styles.root }} elevation={0}>
       <div className="d-flex align-center">
-        {/* left */}
-        {/* menu */}
         <IconButton>
           <MenuIcon />
         </IconButton>
-        {/* logo */}
         <Link href="/">
           <a>
             <img
@@ -40,7 +43,6 @@ const Header: React.FC<IHeader> = () => {
           <SearchIcon />
           <input placeholder="Поиск" />
         </div>
-        {/* button */}
         <Link href="/write">
           <a>
             <Button variant="contained" className={styles.penButton}>
@@ -50,24 +52,17 @@ const Header: React.FC<IHeader> = () => {
         </Link>
       </div>
 
-      {/* rigth */}
       <div className="d-flex align-center">
-        {/* <IconButton>
-          <MessageIcon />
-        </IconButton> */}
+
         <IconButton>
           <NotificationIcon />
         </IconButton>
 
-        {/* login */}
-        <div className={styles.loginButton}>
-          <Link href="/profile/1">
-            <a className="d-flex align-center">
-              <UserIcon />
-              Войти
-            </a>
-          </Link>
+        <div className={styles.loginButton} onClick={openAuthDialog}>
+          <UserIcon />
+          Войти
         </div>
+        <AuthDialog open={visibleAuth} onClose={closeAuthDialog} />
       </div>
     </Paper>
   );
